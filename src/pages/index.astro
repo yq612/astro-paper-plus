@@ -14,7 +14,6 @@ import { SOCIALS } from "@config";
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 
 const socialCount = SOCIALS.filter(social => social.active).length;
 ---
@@ -23,7 +22,14 @@ const socialCount = SOCIALS.filter(social => social.active).length;
   <Header />
   <main id="main-content">
     <section id="hero">
-      <h1>Mingalaba</h1>
+      <h1 class="slogan">
+        嗨，这个网站你<LinkButton
+          className="hover:text-skin-accent underline underline-offset-4 px-1"
+          href="/"
+        >
+          記住了
+        </LinkButton>吗？
+      </h1>
       <a
         target="_blank"
         href="/rss.xml"
@@ -40,26 +46,20 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         </svg>
       </a>
 
+      <p>全干工程师，出道两年半，坐标广州。</p>
       <p>
-        AstroPaper is a minimal, responsive, accessible and SEO-friendly Astro
-        blog theme. This theme follows best practices and provides accessibility
-        out of the box. Light and dark mode are supported by default. Moreover,
-        additional color schemes can also be configured.
-      </p>
-      <p>
-        Read the blog posts or check
-        <LinkButton
+        拧过螺丝，也造过火箭；喜欢接触新事物，也乐于分享所见所闻。如果你感兴趣，可以查看网站<LinkButton
           className="hover:text-skin-accent underline underline-offset-4 decoration-dashed"
           href="https://github.com/satnaing/astro-paper#readme"
         >
-          README
-        </LinkButton> for more info.
+          源码
+        </LinkButton>。
       </p>
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
           <div class="social-wrapper">
-            <div class="social-links">Social Links:</div>
+            <div class="social-links">联系方式:</div>
             <Socials />
           </div>
         )
@@ -67,26 +67,6 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     </section>
 
     <Hr />
-
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured">
-            <h2>Featured</h2>
-            <ul>
-              {featuredPosts.map(({ data }) => (
-                <Card
-                  href={`/posts/${slugify(data)}`}
-                  frontmatter={data}
-                  secHeading={false}
-                />
-              ))}
-            </ul>
-          </section>
-          <Hr />
-        </>
-      )
-    }
 
     <section id="recent-posts">
       <h2>Recent Posts</h2>
@@ -126,7 +106,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
     @apply pb-6 pt-8;
   }
   #hero h1 {
-    @apply my-4 inline-block text-3xl font-bold sm:my-8 sm:text-5xl;
+    @apply my-4 inline-block text-2xl font-bold sm:my-8 sm:text-4xl;
   }
   #hero .rss-link {
     @apply mb-6;
