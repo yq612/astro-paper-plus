@@ -2,6 +2,7 @@
 import { SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
+import logoSVG from "/assets/logo.svg";
 
 export interface Props {
   activeNav?: "posts" | "tags" | "about" | "search";
@@ -15,7 +16,7 @@ const { activeNav } = Astro.props;
   <div class="nav-container">
     <div class="top-nav-wrap">
       <a href="/" class="logo flex items-center">
-        <img src="/public/assets/logo.svg" class="scale-[0.8]" />
+        <img src={logoSVG} class="scale-[0.8]" />
         {SITE.title}
       </a>
       <nav id="nav-menu">
