@@ -1,10 +1,7 @@
 ---
-import { LOGO_IMAGE, SITE } from "@config";
+import { SITE } from "@config";
 import Hr from "./Hr.astro";
 import LinkButton from "./LinkButton.astro";
-
-import logoPNG from "/assets/logo.png";
-import logoSVG from "/assets/logo.svg";
 
 export interface Props {
   activeNav?: "posts" | "tags" | "about" | "search";
@@ -17,19 +14,9 @@ const { activeNav } = Astro.props;
   <a id="skip-to-content" href="#main-content">Skip to content</a>
   <div class="nav-container">
     <div class="top-nav-wrap">
-      <a href="/" class="logo">
-        {
-          LOGO_IMAGE.enable ? (
-            <img
-              src={LOGO_IMAGE.svg ? logoSVG : logoPNG}
-              alt="Logo"
-              width={LOGO_IMAGE.width}
-              height={LOGO_IMAGE.height}
-            />
-          ) : (
-            SITE.title
-          )
-        }
+      <a href="/" class="logo flex items-center">
+        <img src="/public/assets/logo.svg" class="scale-[0.8]" />
+        {SITE.title}
       </a>
       <nav id="nav-menu">
         <button
@@ -126,10 +113,10 @@ const { activeNav } = Astro.props;
     @apply mx-auto flex max-w-3xl flex-col items-center justify-between sm:flex-row;
   }
   .top-nav-wrap {
-    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8 ;
+    @apply relative flex w-full items-start justify-between p-4 sm:items-center sm:py-8;
   }
   .logo {
-    @apply absolute py-1 text-xl font-semibold sm:static sm:text-2xl;
+    @apply absolute py-1 text-xl font-semibold sm:text-2xl;
   }
   .hamburger-menu {
     @apply self-end p-2 sm:hidden;
@@ -170,7 +157,7 @@ const { activeNav } = Astro.props;
   nav button svg {
     @apply h-6 w-6 fill-skin-base hover:fill-skin-accent;
   }
-  .top-nav-wrap .logo{
+  .top-nav-wrap .logo {
     word-break: keep-all;
   }
   #theme-btn {
