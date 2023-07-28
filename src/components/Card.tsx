@@ -1,5 +1,6 @@
 import Datetime from "./Datetime";
 import type { BlogFrontmatter } from "@content/_schemas";
+import Readtime from "./ReadTime";
 
 export interface Props {
   href?: string;
@@ -8,7 +9,7 @@ export interface Props {
 }
 
 export default function Card({ href, frontmatter, secHeading = true }: Props) {
-  const { title, pubDatetime, description } = frontmatter;
+  const { title, pubDatetime, description, readingTime } = frontmatter;
   return (
     <li className="my-6">
       <a
@@ -25,7 +26,11 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
           </h3>
         )}
       </a>
-      <Datetime datetime={pubDatetime} />
+      <div className="flex items-center">
+        <Datetime datetime={pubDatetime} size="lg" className="my-2" />
+        &nbsp;&nbsp;&nbsp;
+        <Readtime size="lg" time={readingTime} />
+      </div>
       <p>{description}</p>
     </li>
   );

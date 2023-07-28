@@ -6,6 +6,7 @@ import getSortedPosts from "@utils/getSortedPosts";
 import getPageNumbers from "@utils/getPageNumbers";
 import slugify from "@utils/slugify";
 import { SITE } from "@config";
+import getPostsWithRT from "@utils/getPostsWithRT";
 
 export interface Props {
   post: CollectionEntry<"blog">;
@@ -13,8 +14,8 @@ export interface Props {
 
 export async function getStaticPaths() {
   const posts = await getCollection("blog", ({ data }) => !data.draft);
-
-  const postResult = posts.map(post => ({
+  const postsWithRT = await getPostsWithRT(posts);
+  const postResult = postsWithRT.map(post => ({
     params: { slug: slugify(post.data) },
     props: { post },
   }));
@@ -31,7 +32,7 @@ const { post } = Astro.props;
 
 const posts = await getCollection("blog");
 
-const sortedPosts = getSortedPosts(posts);
+const sortedPosts = await getSortedPosts(posts);
 
 const totalPages = getPageNumbers(sortedPosts.length);
 
