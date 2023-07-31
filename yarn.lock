@@ -20,10 +20,15 @@
     "@jridgewell/gen-mapping" "^0.3.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@astrojs/compiler@^1.0.0", "@astrojs/compiler@^1.0.1", "@astrojs/compiler@^1.4.2", "@astrojs/compiler@^1.6.0":
+"@astrojs/compiler@^1.0.0", "@astrojs/compiler@^1.0.1", "@astrojs/compiler@^1.4.2":
   version "1.6.2"
   resolved "https://registry.npmmirror.com/@astrojs/compiler/-/compiler-1.6.2.tgz#53f15a4f7f0ddb23dc9e1e1e571f897a48dd3798"
   integrity sha512-2grH0lSm/Su88ZUd1kF0OdR/CT4ClWKvCwVz4yDdpgLgpzXhs1LdO2V58YfSqnx/z+G5EBWv6yEkp3tDG3GQYQ==
+
+"@astrojs/compiler@^1.6.3":
+  version "1.6.3"
+  resolved "https://registry.npmmirror.com/@astrojs/compiler/-/compiler-1.6.3.tgz#4351db26f7dc84c4182273542d67163e48b0161e"
+  integrity sha512-n0xTuBznKspc0plk6RHBOlSv/EwQGyMNSxEOPj7HMeiRNnXX4woeSopN9hQsLkqraDds1eRvB4u99buWgVNJig==
 
 "@astrojs/internal-helpers@^0.1.1":
   version "0.1.1"
@@ -397,6 +402,11 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@ctrl/tinycolor@^3.6.0":
+  version "3.6.0"
+  resolved "https://registry.npmmirror.com/@ctrl/tinycolor/-/tinycolor-3.6.0.tgz#53fa5fe9c34faee89469e48f91d51a3766108bc8"
+  integrity sha512-/Z3l6pXthq0JvMYdUFyX9j0MaCltlIn6mfh9jLyQwg5aPKxkyNa0PTHtU1AlFXLNk55ZuAeJRcpvq+tmLfKmaQ==
+
 "@divriots/cheerio@1.0.0-rc.12":
   version "1.0.0-rc.12"
   resolved "https://registry.npmmirror.com/@divriots/cheerio/-/cheerio-1.0.0-rc.12.tgz#d8561ad12d97be8bad22e681f1e21b1e45165a55"
@@ -706,6 +716,42 @@
   version "8.44.0"
   resolved "https://registry.npmmirror.com/@eslint/js/-/js-8.44.0.tgz#961a5903c74139390478bdc808bcde3fc45ab7af"
   integrity sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==
+
+"@expressive-code/core@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.npmmirror.com/@expressive-code/core/-/core-0.19.0.tgz#be6591b282d89446625fb9e8733882b0ea0fcf55"
+  integrity sha512-OWHwZzg8TVfaKzfDBQcp8FkpwjQKjukt07YxWiYLFCtZ+yuBxeag95zj9NSskyjxTX7+lFbXuqB8KVXM+qmckg==
+  dependencies:
+    "@ctrl/tinycolor" "^3.6.0"
+    hast-util-to-html "^8.0.4"
+    hastscript "^7.2.0"
+    postcss "^8.4.21"
+    postcss-nested "^6.0.1"
+
+"@expressive-code/plugin-frames@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.npmmirror.com/@expressive-code/plugin-frames/-/plugin-frames-0.19.0.tgz#0bbdb933c2dbf28ce9e7c9076bde33fb834f9221"
+  integrity sha512-EGwusBRmPnx2UzGtnVLGPqspJbOQhcOvOmdd7udomffEzn/Oj+cucq9xBaMTBxU1NpB3NKHR5VG/15Ad0u9mwA==
+  dependencies:
+    "@expressive-code/core" "^0.19.0"
+    hastscript "^7.2.0"
+
+"@expressive-code/plugin-shiki@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.npmmirror.com/@expressive-code/plugin-shiki/-/plugin-shiki-0.19.0.tgz#548665749f6e81accbb89a5a941107987f60944e"
+  integrity sha512-6LPwZJUaSJda5N6K6lsmIJQ8xq4ah9S+2duNMlyl6VSRzapUMl6xnjs5Hytt47ioF4RKnQdVhFQNYJ3X43RE7g==
+  dependencies:
+    "@expressive-code/core" "^0.19.0"
+    shiki "^0.14.1"
+
+"@expressive-code/plugin-text-markers@^0.19.0":
+  version "0.19.0"
+  resolved "https://registry.npmmirror.com/@expressive-code/plugin-text-markers/-/plugin-text-markers-0.19.0.tgz#522b33a31e5ad08adecaf70abbd909375c02d76b"
+  integrity sha512-uXIoyxEG0K2m2loz52vDDvs/YeGH0xDgNKumZHn3Uxs7VNUxKo5y5ZBvhodHGmMgBGeDzSgGUFanbhL/mExh3A==
+  dependencies:
+    "@expressive-code/core" "^0.19.0"
+    hastscript "^7.2.0"
+    unist-util-visit-parents "^5.1.3"
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
@@ -1386,12 +1432,19 @@ astro-eslint-parser@^0.14.0:
     espree "^9.0.0"
     semver "^7.3.8"
 
-astro@^2.4.5:
-  version "2.9.3"
-  resolved "https://registry.npmmirror.com/astro/-/astro-2.9.3.tgz#a85a1b94d1d064546bb191f80a52c08a7b3ed800"
-  integrity sha512-EcFYnJytMgDhBf1MxWIG1GNwfDL2yRvVt+4aguYbcFDNz8EjLKgpLYbbTzR2VlIQu1vpxImZZ0bmPy8Hd+tAfw==
+astro-expressive-code@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.npmmirror.com/astro-expressive-code/-/astro-expressive-code-0.19.0.tgz#d6183fb8ff04306e97519a96213546ca6dbba826"
+  integrity sha512-yDKGVdlMXW92YiKjiDrNDe5qbrUR7ZanBFd+wAhVEW42emHYABQ/KEMqRJijfcF/rV0uGWfDorI4D3vUtyIniw==
   dependencies:
-    "@astrojs/compiler" "^1.6.0"
+    remark-expressive-code "^0.19.0"
+
+astro@^2.9.6:
+  version "2.9.6"
+  resolved "https://registry.npmmirror.com/astro/-/astro-2.9.6.tgz#3f70a11c96ce465f465a41bcd6c6d4c099edc7c9"
+  integrity sha512-yvbZQ6YOWYLejyQ4nAcgZLDYQ34enQJ5/LWlXKtUzXzpsUHB75vJMj+XmEq5Q2eVlZOlQrp0lU+nhSRGaOsOUQ==
+  dependencies:
+    "@astrojs/compiler" "^1.6.3"
     "@astrojs/internal-helpers" "^0.1.1"
     "@astrojs/language-server" "^1.0.0"
     "@astrojs/markdown-remark" "^2.2.1"
@@ -2530,6 +2583,16 @@ expand-tilde@^2.0.0, expand-tilde@^2.0.2:
   dependencies:
     homedir-polyfill "^1.0.1"
 
+expressive-code@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.npmmirror.com/expressive-code/-/expressive-code-0.19.0.tgz#06d4f8fc1fcb496fc22533cf3daccc97f767dea2"
+  integrity sha512-ZpFYhbsvq0MGEC6PILqAZZL/FzCO/Qkzt7B5bHxUqwmMoFOHgCwUiVD+Qc4Psd3P6+0/wzUQJ06ac1+lIcrdgA==
+  dependencies:
+    "@expressive-code/core" "^0.19.0"
+    "@expressive-code/plugin-frames" "^0.19.0"
+    "@expressive-code/plugin-shiki" "^0.19.0"
+    "@expressive-code/plugin-text-markers" "^0.19.0"
+
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.npmmirror.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
@@ -2938,7 +3001,7 @@ hast-util-raw@^7.0.0, hast-util-raw@^7.2.0:
     web-namespaces "^2.0.0"
     zwitch "^2.0.0"
 
-hast-util-to-html@^8.0.0:
+hast-util-to-html@^8.0.0, hast-util-to-html@^8.0.4:
   version "8.0.4"
   resolved "https://registry.npmmirror.com/hast-util-to-html/-/hast-util-to-html-8.0.4.tgz#0269ef33fa3f6599b260a8dc94f733b8e39e41fc"
   integrity sha512-4tpQTUOr9BMjtYyNlt0P50mH7xj0Ks2xpo8M943Vykljf99HW6EzulIoJP1N3eKOSScEHzyzi9dm7/cn0RfGwA==
@@ -2972,7 +3035,7 @@ hast-util-whitespace@^2.0.0:
   resolved "https://registry.npmmirror.com/hast-util-whitespace/-/hast-util-whitespace-2.0.1.tgz#0ec64e257e6fc216c7d14c8a1b74d27d650b4557"
   integrity sha512-nAxA0v8+vXSBDt3AnRUNjyRIQ0rD+ntpbAp4LnPkumc5M9yUbSMa4XDU9Q6etY4f1Wp4bNgvc1yjiZtsTTrSng==
 
-hastscript@^7.0.0:
+hastscript@^7.0.0, hastscript@^7.2.0:
   version "7.2.0"
   resolved "https://registry.npmmirror.com/hastscript/-/hastscript-7.2.0.tgz#0eafb7afb153d047077fa2a833dc9b7ec604d10b"
   integrity sha512-TtYPq24IldU8iKoJQqvZOuhi5CyCQRAbvDOX0x1eW6rsHSxa/1i2CCiptNTotGHJ3VoHRGmqiv6/D3q113ikkw==
@@ -4609,7 +4672,7 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.0.2, postcss-value-parser@^
   resolved "https://registry.npmmirror.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@^8.4.14, postcss@^8.4.23, postcss@^8.4.26:
+postcss@^8.4.14, postcss@^8.4.21, postcss@^8.4.23, postcss@^8.4.26:
   version "8.4.27"
   resolved "https://registry.npmmirror.com/postcss/-/postcss-8.4.27.tgz#234d7e4b72e34ba5a92c29636734349e0d9c3057"
   integrity sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==
@@ -4822,6 +4885,15 @@ remark-collapse@^0.1.2:
   dependencies:
     mdast-util-heading-range "^2.0.1"
     mdast-util-to-string "^1.0.2"
+
+remark-expressive-code@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.npmmirror.com/remark-expressive-code/-/remark-expressive-code-0.19.0.tgz#c7d57485cea903587e5643c680f9760fa5fd6540"
+  integrity sha512-WIfnSF2T7ltpFVS6gPzK6/0PaI3JQ6LEEGSxHJGEUcv3LInCLYUECGQ6VEzy3Z2uzTLqsAxDPQcm4OR4xZSB4Q==
+  dependencies:
+    expressive-code "^0.19.0"
+    hast-util-to-html "^8.0.4"
+    unist-util-visit "^4.1.2"
 
 remark-gfm@^3.0.1:
   version "3.0.1"
@@ -5750,7 +5822,7 @@ unist-util-visit-children@^2.0.0:
   dependencies:
     "@types/unist" "^2.0.0"
 
-unist-util-visit-parents@^5.0.0, unist-util-visit-parents@^5.1.1:
+unist-util-visit-parents@^5.0.0, unist-util-visit-parents@^5.1.1, unist-util-visit-parents@^5.1.3:
   version "5.1.3"
   resolved "https://registry.npmmirror.com/unist-util-visit-parents/-/unist-util-visit-parents-5.1.3.tgz#b4520811b0ca34285633785045df7a8d6776cfeb"
   integrity sha512-x6+y8g7wWMyQhL1iZfhIPhDAs7Xwbn9nRosDXl7qoPTSCy0yNxnKc+hWokFifWQIDGi154rdUqKvbCa4+1kLhg==

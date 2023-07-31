@@ -20,7 +20,13 @@ description: 高亮 markdown 的拓展语法。
 
 ## 修改配置
 
-步骤 1，新建自定义 integrations 插件 expressive-code.ts
+步骤 1，安装依赖
+
+```bash
+yarn add astro-expressive-code
+```
+
+步骤 2，新建自定义 integrations 插件 expressive-code.ts
 
 这里是用到了两个 css 变量：`--theme-code-bg` 和 `--theme-code-tabs`
 
@@ -52,7 +58,7 @@ export const astroDocsExpressiveCode = () =>
   });
 ```
 
-步骤 2，添加 css 变量
+步骤 3，添加 css 变量
 
 ```css title="src/styles/base.css" ins={4-5,8-9}
 @layer base {
@@ -68,7 +74,7 @@ export const astroDocsExpressiveCode = () =>
 }
 ```
 
-步骤 3，修改 astro 配置
+步骤 4，修改 astro 配置
 
 ```js ins={1,5} del={11-14}
 import { astroDocsExpressiveCode } from "./src/utils/expressive-code";
