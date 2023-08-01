@@ -6,6 +6,9 @@ import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 import { remarkReadingTime } from "./src/utils/remark-reading-time.mjs";
 import { astroDocsExpressiveCode } from "./src/utils/expressive-code";
+import { asideAutoImport, astroAsides } from "./src/utils/astro-asides";
+import AutoImport from "astro-auto-import";
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,9 +19,14 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
+    AutoImport({
+      imports: [asideAutoImport],
+    }),
+    astroAsides(),
     astroDocsExpressiveCode(),
     react(),
     sitemap(),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [
@@ -31,10 +39,6 @@ export default defineConfig({
         },
       ],
     ],
-    // shikiConfig: {
-    //   theme: "one-dark-pro",
-    //   wrap: true,
-    // },
     extendDefaultPlugins: true,
   },
   vite: {
