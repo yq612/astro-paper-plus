@@ -26,7 +26,7 @@ export default function Card({ href, frontmatter, secHeading = true }: Props) {
           </h3>
         )}
       </a>
-      <div className="flex items-center">
+      <div className="mb-[0.7rem] flex flex-wrap items-center items-center sm:mb-[0] sm:flex-nowrap">
         <Datetime datetime={pubDatetime} size="lg" className="my-2" />
         &nbsp;&nbsp;&nbsp;
         <Readtime size="lg" time={readingTime} />
