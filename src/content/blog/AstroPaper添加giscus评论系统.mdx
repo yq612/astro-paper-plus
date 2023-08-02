@@ -1,0 +1,173 @@
+---
+title: AstroPaper 添加 giscus 评论系统
+author: youquan
+pubDatetime: 2023-08-02T09:29:05.569Z
+postSlug: AstroPaper 添加 giscus 评论系统
+featured: false
+draft: false
+ogImage: /assets/forrest-gump-quote.webp
+tags:
+  - AstroPaper
+  - AStro
+  - giscus
+  - markdown
+description: 将 giscus 作为评论系统集成到 AstroPaper 中，支持动态主题切换。
+---
+
+Astro 支持动态插入 script，所以为集成 giscus 提供了便利。我们需要探究两个问题：
+
+- 选用什么作为 页面 -> discussion 的映射？
+- 如何做到动态切换主题？
+
+我们的文章详情链接是 `http://127.0.0.1:3000/posts/[post-title]` 的形式，因此可以只取 post-title 作为 页面 -> discussion 的映射，
+这样也保证了一篇文章对应一个评论。
+
+要实现动态切换主题，就需要用到 postMessage 跨页面通信，因为 **giscus 是以 iframe 的形式嵌入到页面中**的，
+我们可以使用 `iframe.contentWindow.postMessage` 的方法来告诉 giscus 插件动态更换主题。
+
+实现思路有了，接下来一步一步实现。
+
+## 步骤 1，获取 giscus 配置
+
+登入 [giscus](https://giscus.app/zh-CN) 网站，按照说明选择自己的配置，其中，需要注意的是：
+
+- 页面和 discussion 映射关系：选择 `og:title` 的形式
+  ![](/assets/blog/Snipaste_2023-08-02_11-02-12.png)
+- Discussion 分类选择 `General`
+  ![](/assets/blog/Snipaste_2023-08-02_11-13-29.png)
+
+填写完成后你会获得如下配置，关注高亮部分：
+
+```html "[repo]" "[repo_id]" "[category_id]" "[lang]"
+<script
+  src="https://giscus.app/client.js"
+  data-repo="[repo]"
+  data-repo-id="[repo_id]"
+  data-category="General"
+  data-category-id="[category_id]"
+  data-mapping="og:title"
+  data-strict="0"
+  data-reactions-enabled="0"
+  data-emit-metadata="0"
+  data-input-position="top"
+  data-theme="light"
+  data-lang="[lang]"
+  data-loading="lazy"
+  crossorigin="anonymous"
+  async
+></script>
+```
+
+## 步骤 2，新建环境变量文件 .env
+
+为了隐私和安全，将步骤 1 中获取的关键参数，用环境变量的形式存储起来
+
+```text title=".env" "[repo]" "[repo_id]" "[category_id]" "[lang]"
+# Giscus Config
+GISCUS_REPO=[repo]
+GISCUS_REPO_ID=[repo_id]
+GISCUS_CATEGORY_ID=[category_id]
+GISCUS_lang=[lang]
+```
+
+## 步骤 3，编写 Comment.astro 组件
+
+```astro title="src/components/Comment.astro"
+---
+const pathname = decodeURIComponent(Astro.url.pathname || ""); //解码
+const postName = pathname?.split("/").pop();
+const { GISCUS_REPO, GISCUS_REPO_ID, GISCUS_CATEGORY_ID, GISCUS_lang } =
+  import.meta.env;
+---
+
+<meta
+  data-giscus_repo={GISCUS_REPO}
+  data-giscus_repo_id={GISCUS_REPO_ID}
+  data-giscus_category_id={GISCUS_CATEGORY_ID}
+  data-giscus_lang={GISCUS_lang}
+  id="giscus-meta"
+/>
+<meta property={`og:${postName}`} />
+<script>
+  const {
+    giscus_repo = "",
+    giscus_repo_id = "",
+    giscus_category_id = "",
+    giscus_lang,
+  } = (document.querySelector("#giscus-meta") as HTMLAnchorElement).dataset;
+
+  function sendMessage(message: Object) {
+    const iframe = document.querySelector(
+      "iframe.giscus-frame"
+    ) as HTMLIFrameElement;
+    if (!iframe || !iframe.contentWindow) return;
+    iframe.contentWindow.postMessage({ giscus: message }, "https://giscus.app");
+  }
+
+  function getCurrentTheme() {
+    const theme =
+      document.firstElementChild &&
+      document.firstElementChild.getAttribute("data-theme");
+    return theme;
+  }
+
+  function createGusicScript() {
+    const container = document.querySelector("#main-content");
+    const theme = getCurrentTheme() == "light" ? "light" : "dark_dimmed";
+    let script = document.createElement("script");
+    script.src = "https://giscus.app/client.js";
+    script.setAttribute("data-repo", giscus_repo);
+    script.setAttribute("data-repo-id", giscus_repo_id);
+    script.setAttribute("data-category", "General");
+    script.setAttribute("data-category-id", giscus_category_id);
+    script.setAttribute("data-mapping", "og:title");
+    script.setAttribute("data-strict", "0");
+    script.setAttribute("data-reactions-enabled", "0");
+    script.setAttribute("data-emit-metadata", "0");
+    script.setAttribute("data-input-position", "top");
+    script.setAttribute("data-theme", theme);
+    script.setAttribute("data-lang", giscus_lang || "en");
+    script.setAttribute("data-loading", "lazy");
+    script.setAttribute("crossorigin", "anonymous");
+    script.async = true;
+    container && container.appendChild(script);
+  }
+
+  createGusicScript();
+  document.querySelector("#theme-btn")?.addEventListener("click", () => {
+    const theme = getCurrentTheme();
+    sendMessage({
+      setConfig: { theme: theme == "light" ? "dark_dimmed" : "light" },
+    });
+  });
+</script>
+```
+
+组件里面实现了几个点
+
+- 获取了文章名称，并使用 meta 的形式关联到了 giscus
+  ```html
+  <meta property="{`og:${postName}`}" />
+  ```
+- 将环境变量存储在 meta 标签中，让 script 脚本能获取其中的变量
+  :::note[为什么要这么做？]
+  环境变量无法被 script 脚本直接读取，需要有个媒介来存储，参考 [Astro 变量传递](https://docs.astro.build/en/guides/client-side-scripts/#pass-frontmatter-variables-to-scripts)
+  :::
+- 为了实现动态切换主题，调用了 `postMessage api`
+
+## 步骤 4，引用 Comment.astro 组件
+
+```astro title="src/layouts/PostDetails.astro" ins={2,6}
+---
+import Comment from "@components/Comment.astro";
+// ...
+---
+
+<Comment />
+<Layout>
+  <!-- other code -->
+</Layout>
+```
+
+效果：
+![](/assets/blog/Snipaste_2023-08-02_11-46-03.png)
