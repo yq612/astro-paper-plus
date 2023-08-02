@@ -1,6 +1,6 @@
 # AstroBlog 博客系统
 
-![AstroPaper](public/astropaper-og.jpg)
+![AstroPaper](public/assets/blog/post.png)
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![GitHub](https://img.shields.io/github/license/satnaing/astro-paper?color=%232F3741&style=for-the-badge)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
@@ -25,7 +25,12 @@ AstroBlog 是一款开箱即用的博客系统。
 
 ## 本地运行
 
-1. 安装依赖(确保 node 版本大于 16）)：`yarn`
+1. 安装依赖(确保 node 版本大于 16）)
+
+```bash
+yarn
+```
+
 2. 新建 `.env` 文件，写入 giscus 配置（可选）
 
 ```text title=".env"
