@@ -16,16 +16,15 @@ AstroBlog 是一款开箱即用的博客系统。
 ## 系统特色
 
 - [x] 响应式
-- [x] 支持 giscus 文档
+- [x] 支持 mdx 文档
 - [x] 支持评论（giscus）
 - [x] 支持 aside 友好提示
 - [x] 支持显示阅读时长
 - [x] 白天黑夜两个主题
-- [ ] 阅读数（开发中...）
 
 ## 本地运行
 
-1. 安装依赖(确保 node 版本大于 16）)
+1. 安装依赖(确保 node 版本大于 16）
 
 ```bash
 yarn
@@ -44,6 +43,36 @@ GISCUS_lang=【替换为你的默认语言】
 如何获取 giscus 配置，可以参考
 
 3. 打开浏览器，输入 `http://127.0.0.1:3000/` 即可。
+
+## 添加文章&修改配置
+
+项目的大致目录如下所示：
+
+```bash
+├── public/
+│   ├── assets/
+│   │   └── logo.svg
+├── src/
+│   ├── assets/
+│   │   └── socialIcons.ts
+│   ├── components/
+│   ├── content/
+│   │   |  blog/
+│   │   |    └── some-blog-posts.md
+│   │   └── _schemas.ts
+│   │   └── config.ts
+│   ├── layouts/
+│   └── pages/
+│   └── styles/
+│   └── utils/
+│   └── config.ts
+│   └── types.ts
+└── package.json
+```
+
+- **添加文章**：进入 `src/content/blog`，新建 md 或者 mdx 文档
+- **更换 logo**：替换 `public/assets` 下的 logo.svg
+- **更改配置**：进入`src/config.ts`，有选择性修改
 
 ## 远端部署
 

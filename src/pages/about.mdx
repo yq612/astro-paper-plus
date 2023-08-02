@@ -1,13 +1,11 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "关于本站"
+title: "About"
 ---
 
-本站使用 [AstroBlog](https://github.com/yq612/astro-blog) 进行搭建。
+本站使用 [AstroBlog](https://github.com/yq612/astro-blog) + Vercel 进行搭建和部署。
 
-AstroBlog 是一款开箱即用的博客系统， 基于 [AstroPaper](https://github.com/satnaing/astro-paper) 进行二次开发，在原来系统的基础上增加了一些定制化的功能。
-
-如果你对二次开发的内容感兴趣，可以阅读 Astro 搭建博客系列。
+![AstroPaper](public/assets/blog/post.png)
 
 ## 系统特色
 
@@ -18,34 +16,6 @@ AstroBlog 是一款开箱即用的博客系统， 基于 [AstroPaper](https://gi
 - 支持显示阅读时长
 - 白天黑夜两个主题
 
-## 本地运行
-
-1. 安装依赖(确保 node 版本大于 16）)：`yarn`
-2. 新建 `.env` 文件，写入 giscus 配置（可选）
-
-```text title=".env"
-# Giscus Config
-GISCUS_REPO=【替换为你的仓库名称】
-GISCUS_REPO_ID=【替换为你的仓库id】
-GISCUS_CATEGORY_ID=【替换为你的目录id】
-GISCUS_lang=【替换为你的默认语言】
-```
-
-如何获取 giscus 配置，可以参考
-
-3. 打开浏览器，输入 `http://127.0.0.1:3000/` 即可。
-
-## 远端部署
-
-推荐使用 vercel 一键部署。
-
-1. 点击 <a href="https://vercel.com/new/clone?repository-url=https://github.com/yq612/astro-blog.git" target="_blank"><img src="https://vercel.com/button" style="display: inline-block;width: 88px;vertical-align: middle;margin: 0!important;padding: 0;"/></a> 创建项目
-2. 进入项目 settings，点击 environment-variables，在右侧添加以下环境变量，用于配置评论系统。变量名称参考**本地运行中的第 2 步配置**。
-   ![](/assets/blog/Snipaste_2023-08-02_16-44-14.png)
-3. 如果需要绑定域名，可以在 settings 页面点击 domains 进行配置（可选）
-
-部署示例 [记住了](https://jizhule.cn/)。
-
 ## 反馈与建议
 
-如果有任何的建议或疑问，欢迎提 issue 或者通过<a href="mailto:695601924@qq.com">邮箱</a>联系我。
+如果有任何的建议或疑问，欢迎通过<a href="mailto:695601924@qq.com">邮箱</a>联系我。
