@@ -7,7 +7,7 @@
 ![mdx](https://img.shields.io/badge/mdx-007ACC?style=for-the-badge&logo=MDX&logoColor=white)
 ![giscus](https://img.shields.io/badge/giscus-%2319c37d?style=for-the-badge&logo=giscus&logoColor=white)
 
-AstroBlog 是一款开箱即用的博客系统。
+AstroBlog 是一款开箱即用的博客系统。[在线案例](https://jizhule.cn)。
 
 该系统基于 [AstroPaper](https://github.com/satnaing/astro-paper) 进行二次开发，在原来系统的基础上增加了一些定制化的功能。
 
