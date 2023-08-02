@@ -77,7 +77,7 @@ GISCUS_lang=【替换为你的默认语言】
 
 ## 远端部署
 
-推荐使用 vercel 一键部署。
+方式一：使用 vercel 一键部署（推荐 👍）。
 
 1. 点击 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpengzhile%2Fpandora-cloud-serverless)
    创建项目
@@ -86,6 +86,18 @@ GISCUS_lang=【替换为你的默认语言】
 3. 如果需要绑定域名，可以在 settings 页面点击 domains 进行配置（可选）
 
 查看[部署示例](https://jizhule.cn/)。
+
+方式二：自行打包部署
+
+1. 执行打包命令
+
+```bash
+yarn build
+```
+
+2. 将打包产出的 dist 中的所有文件，复制到你的服务器静态资源目录即可（比如配合 nginx ）。
+
+这种方式需要自己配置 CI/CD，自己购买服务器和配置网站。
 
 ## 反馈与建议
 
