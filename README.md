@@ -15,13 +15,13 @@ AstroBlog 是一款开箱即用的博客系统。[在线案例](https://jizhule.
 
 ## 系统特色
 
-- ✅ 响应式
-- ✅ 支持 mdx 文档
-- ✅ 支持 md 拓展语法，比如高亮删减行、特定行，设置标题等
-- ✅ 支持评论（giscus）
-- ✅ 支持 aside 友好提示
-- ✅ 支持显示阅读时长
-- ✅ 白天黑夜两个主题
+- [x] 响应式
+- [x] 支持 mdx 文档
+- [x] 支持 md 拓展语法，比如高亮删减行、特定行，设置标题等
+- [x] 支持评论（giscus）
+- [x] 支持 aside 友好提示
+- [x] 支持显示阅读时长
+- [x] 白天黑夜两个主题
 
 ## 本地运行
 
@@ -41,7 +41,7 @@ GISCUS_CATEGORY_ID=【替换为你的目录id】
 GISCUS_lang=【替换为你的默认语言】
 ```
 
-如何获取 giscus 配置，可以参考
+如何获取 giscus 配置，可以参考 [添加 giscus 评论系统](https://www.jizhule.cn/posts/astro-%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E7%B3%BB%E5%88%97%E6%B7%BB%E5%8A%A0-giscus-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F)。
 
 3. 打开浏览器，输入 `http://127.0.0.1:3000/` 即可。
 
