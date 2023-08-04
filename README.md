@@ -1,10 +1,10 @@
 # AstroBlog 博客系统
 
-![AstroPaper](public/assets/blog/post.png)
+![AstroPaper](./screenshot.png)
 ![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![GitHub](https://img.shields.io/github/license/satnaing/astro-paper?color=%232F3741&style=for-the-badge)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white&style=for-the-badge)](https://conventionalcommits.org)
-![mdx](https://img.shields.io/badge/mdx-007ACC?style=for-the-badge&logo=MDX&logoColor=white)
+![mdx](https://img.shields.io/badge/mdx-yellow?style=for-the-badge&logo=MDX&logoColor=white)
 ![giscus](https://img.shields.io/badge/giscus-%2319c37d?style=for-the-badge&logo=giscus&logoColor=white)
 
 AstroBlog 是一款开箱即用的博客系统。[在线案例](https://jizhule.cn)。
@@ -15,13 +15,13 @@ AstroBlog 是一款开箱即用的博客系统。[在线案例](https://jizhule.
 
 ## 系统特色
 
-- [x] 响应式
-- [x] 支持 mdx 文档
-- [x] 支持 md 拓展语法，比如高亮删减行、特定行，设置标题等
-- [x] 支持评论（giscus）
-- [x] 支持 aside 友好提示
-- [x] 支持显示阅读时长
-- [x] 白天黑夜两个主题
+- ✅ 响应式
+- ✅ 支持 mdx 文档
+- ✅ 支持 md 拓展语法，比如高亮删减行、特定行，设置标题等
+- ✅ 支持评论（giscus）
+- ✅ 支持 aside 友好提示
+- ✅ 支持显示阅读时长
+- ✅ 白天黑夜两个主题
 
 ## 本地运行
 
@@ -79,7 +79,7 @@ GISCUS_lang=【替换为你的默认语言】
 
 方式一：使用 vercel 一键部署（推荐 👍）。
 
-1. 点击 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpengzhile%2Fpandora-cloud-serverless)
+1. 点击 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyq612%2Fastro-blog&env=GISCUS_REPO,GISCUS_REPO_ID,GISCUS_CATEGORY_ID,GISCUS_lang&envDescription=Giscus%E7%9A%84%E9%85%8D%E7%BD%AE)
    创建项目
 2. 进入项目 settings，点击 environment-variables，在右侧添加以下环境变量，用于配置评论系统。变量名称参考**本地运行中的第 2 步配置**。
    ![](public/assets/blog/Snipaste_2023-08-02_16-44-14.png)

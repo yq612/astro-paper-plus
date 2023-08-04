@@ -1,0 +1,82 @@
+---
+title: Astro + Vercel 快速搭建自己的博客网站
+author: youquan
+pubDatetime: 2023-08-03T14:22:05.569Z
+postSlug: Astro + Vercel 快速搭建自己的博客网站
+featured: true
+draft: false
+tags:
+  - Astro
+  - Vercel
+  - markdown
+description: 保姆级教程，从零开始快速搭建属于自己的博客网站。
+---
+
+Astro 和 Vercel 彼此相得益彰，前者提供出色的开发者体验，用于构建现代静态站点，而后者负责部署和托管代码。
+
+两者结合我们就可以轻轻松松**零成本**搭建自己的博客网站。<a href="https://jizhule.cn" target="_blank">查看示例</a>。  
+![](/assets/blog/post.png)
+
+## 步骤 1，创建评论仓库
+
+在部署博客之前，我们先创建一个用于评论的 github 仓库（实际上使用了 dicussions 功能）。
+
+1. 登录 <a href="https://github.com" target="_blank">github</a> ，点击 new repository。
+   ![](/assets/blog/astor_blog_create_comment.png)
+   **必须将仓库设置为 public，不然用户无法评论**。
+   ![](/assets/blog/astor_blog_giscus_rep.png)
+2. 复制你的仓库名，打开 [Gisucus](https://giscus.app/) 配置网站进行在线配置。
+   ![](/assets/blog/astro_blog_giscus_name.png)
+3. 按照官方步骤依次设置，直到你的仓库满足所有条件。
+   ![](/assets/blog/astro_blog_giscus_ok.png)
+4. **其中有两个点需要注意**：
+
+- 页面和 discussion 映射关系：选择 `og:title` 的形式
+  ![](/assets/blog/Snipaste_2023-08-02_11-02-12.png)
+- Discussion 分类选择 `General`
+  ![](/assets/blog/Snipaste_2023-08-02_11-13-29.png)
+
+5. 处理好后，我们就可以获取一份 giscus 配置。关注高亮部分，待会儿部署的时候需要用到。
+
+   ```html "[repo]" "[repo_id]" "[category_id]" "[lang]"
+   <script
+     src="https://giscus.app/client.js"
+     data-repo="[repo]"
+     data-repo-id="[repo_id]"
+     data-category="General"
+     data-category-id="[category_id]"
+     data-mapping="og:title"
+     data-strict="0"
+     data-reactions-enabled="0"
+     data-emit-metadata="0"
+     data-input-position="top"
+     data-theme="light"
+     data-lang="[lang]"
+     data-loading="lazy"
+     crossorigin="anonymous"
+     async
+   ></script>
+   ```
+
+## 步骤 2，创建 vercel 项目
+
+1. 点击 <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fyq612%2Fastro-blog&env=GISCUS_REPO,GISCUS_REPO_ID,GISCUS_CATEGORY_ID,GISCUS_lang&envDescription=Giscus%E7%9A%84%E9%85%8D%E7%BD%AE" target="_blank">AstroBlog</a> 创建项目。使用 GitHub 登录，然后创建一个仓库。
+   ![](/assets/blog/astro_blog_login.png)
+   ![](/assets/blog/astro_blog_git_name.png)
+
+2. 用**步骤 1 中获取的 giscus 配置设置环境变量**，，设置完之后点击 deploy 进行部署。
+   ![](/assets/blog/astor_blog_vercel_deploy.png)
+
+3. 静待部署完之后，就可以访问自己的博客啦！！🎉🎉🎉🎉
+
+## 步骤 3，绑定域名（可选）
+
+1. 首先需要购买一个域名，这里选择了腾讯云。假设购买的域名是 youside.com。
+2. 跳转到 vercel，选择你的项目，依次添加域名。
+   ![](/assets/blog/astro_blog_domain.png)
+   此时域名还没有绑定到我们的 vercel，所以会显示校验失败。
+3. 复制 vercel 应用程序的 ip
+   ![](/assets/blog/astro_blog_domain_ip.png)
+4. 跳转到腾讯云 DNS 控制台，将刚才复制的 ip，添加解析（不同的供应商操作可能有差异）。
+   ![](/assets/blog/astro_blog_domain_cdn.png)
+   操作完成后过几分钟，就可以通过 youside.com 访问你的博客啦！
