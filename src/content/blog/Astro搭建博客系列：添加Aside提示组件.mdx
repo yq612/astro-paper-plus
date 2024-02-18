@@ -43,7 +43,7 @@ export default defineConfig({
 
 步骤 1，新建 Aside.astro 文件
 
-````astro title="src/components/Aside.astro"
+```astro title="src/components/Aside.astro"
 ---
 export interface Props {
   type?: "note" | "tip" | "caution" | "danger";
@@ -93,9 +93,8 @@ const { viewBox, d } = icons[type];
   <section>
     <slot />
   </section>
-</aside>``` ```bash yarn add remark-directive unist-util-remove
-mdast-util-mdx-jsx astro-auto-import
-````
+</aside>
+```
 
 步骤 2，新建 aside.css 样式文件
 
@@ -310,14 +309,14 @@ export default defineConfig({
 
 ## 使用方法
 
-直接在 mdx 文件中，使用 ::: 来表示
+直接在 mdx 文件中，使用 ::: 来表示。
 
 ```txt
-:::[type][title]
+:::[type][[title]]
 [des]
 :::
 ```
-
+注意，title 需用 [] 包裹。
 其中，`title` 表示标题，`des` 是描述，`type` 有四种类型：
 
 - note：关注
